@@ -1,5 +1,7 @@
-import React from 'react';
-import { BrowserRouter, Switch } from 'react-router-dom';
+import React, { useState, useEffect, useCallback } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import WelcomePage from './pages/WelcomePage';
 
 const App = () => {
   return (
@@ -8,7 +10,7 @@ const App = () => {
       </header>
 
       <Switch>
-
+        <Route exact path="/" component={ WelcomePage }/>
       </Switch>
     </BrowserRouter>
   );
