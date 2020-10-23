@@ -1,10 +1,20 @@
 import React from 'react';
 
-const WelcomePage = () => {
-    return (
-        <div>
+import { Typography } from '@material-ui/core';
 
-        </div>
+import useStyles from '../Styles';
+
+const WelcomePage = () => {
+    const classes = useStyles();
+
+    return (
+        <main className={classes.content}>
+            <div className={classes.toolbar} />
+
+            <Typography paragraph>
+                Welcome to my website
+            </Typography>
+        </main>
     );
 };
 
