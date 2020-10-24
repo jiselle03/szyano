@@ -45,22 +45,25 @@ const App = () => {
           onSignOut={destroySession} 
         />
 
-        <Switch>
-          <Route exact path='/' component={ WelcomePage }/>
-          <AuthRoute 
-            exact path="/account/:id"
-            isAuthenticated={!!currentUser}
-            component={AccountShowPage}
-          />
-          <Route 
-            path="/sign_in"
-            render={routeProps => <SignInPage {...routeProps} onSignIn={getUser} />}  
-          />
-          <Route 
-            path="/sign_up"
-            render={routeProps => <SignUpPage {...routeProps} onSignUp={getUser} />}  
-          />
-        </Switch>
+        <main className={classes.content}>
+          <div className={classes.toolbar} />
+          <Switch>
+            <Route exact path='/' component={ WelcomePage }/>
+            <AuthRoute 
+              exact path="/account"
+              isAuthenticated={!!currentUser}
+              component={AccountShowPage}
+            />
+            <Route 
+              path="/sign-in"
+              render={routeProps => <SignInPage {...routeProps} onSignIn={getUser} />}  
+            />
+            <Route 
+              path="/sign-up"
+              render={routeProps => <SignUpPage {...routeProps} onSignUp={getUser} />}  
+            />
+          </Switch>
+        </main>
       </BrowserRouter>
     </div>
   );

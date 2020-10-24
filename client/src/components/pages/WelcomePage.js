@@ -8,13 +8,9 @@ const WelcomePage = () => {
     const classes = useStyles();
 
     return (
-        <main className={classes.content}>
-            <div className={classes.toolbar} />
-
-            <Typography paragraph>
-                Welcome to my website
-            </Typography>
-        </main>
+        <Typography paragraph>
+            Welcome to my website
+        </Typography>
     );
 };
 
