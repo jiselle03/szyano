@@ -21,7 +21,7 @@ const NavBar = props => {
             "icon": "fas fa-user-circle"
         },
         {
-            "text": "Products",
+            "text": "Catalog",
             "icon": "fas fa-book-open"
         },
         {
