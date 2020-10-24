@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+PASSWORD = "supersecret"  
+
+super_user = User.create( 
+    first_name: "Hermione",
+    last_name: "Granger",
+    company: "Hogwarts School of Witchcraft & Wizardry",
+    email: "hermione@hogwarts.edu", 
+    phone: "(123) 456-7890",
+    password: PASSWORD,
+    role: "admin"
+)
+
+puts Cowsay.say("Generated #{User.count} users.", :tux)
