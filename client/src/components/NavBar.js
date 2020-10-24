@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 
 import { AppBar, Divider, Drawer, Hidden, Icon, IconButton,
          List, ListItem, ListItemIcon, ListItemText, 
@@ -10,6 +9,13 @@ import useStyles from './Styles';
 
 const NavBar = props => {
     const { currentUser, onSignOut } = props;
+
+    const [open, setOpen] = useState(false);
+    const [menuOptions, setMenuOptions] = useState([]);
+
+    const container = document.body;
+    const classes = useStyles();
+    const toggleDrawer = () => setOpen(!open);
 
     const options = [
         {
@@ -34,26 +40,20 @@ const NavBar = props => {
         },
     ];
 
-    const [open, setOpen] = useState(false);
-    const [menuOptions, setMenuOptions] = useState(options);
-
-    const container = document.body;
-    const classes = useStyles();
-    const toggleDrawer = () => setOpen(!open);
-
-    useEffect(() => {
+    const checkUser = currentUser => {
         if (currentUser) { 
-            console.log(currentUser)
             setMenuOptions([
                 { 'text': 'Account', 'icon': 'fas fa-user-circle', 'target': '/account' }, 
-                ...menuOptions]);
+                ...options]);
         } else {
             setMenuOptions([
-                {'text': 'Sign In', 'icon': 'fas fa-user-circle', 'target': '/sign-in'},
-                {'text': 'Sign Up', 'icon': 'fas fa-user-circle', 'target': '/sign-up'},
-                ...menuOptions]);
+                {'text': 'Sign In', 'icon': 'fas fa-sign-in-alt', 'target': '/sign-in'},
+                {'text': 'Sign Up', 'icon': 'fas fa-user-plus', 'target': '/sign-up'},
+                ...options]);
         };
-    }, [currentUser]);
+    };
+
+    useEffect(() => checkUser(currentUser), [currentUser]);
 
     const drawer = (
         <div>
@@ -64,7 +64,7 @@ const NavBar = props => {
           <List>
             {menuOptions.map(option => (
                 <ListItem button component="a" href={option.target} key={option.text}>
-                    <ListItemIcon><Icon className={option.icon} /></ListItemIcon>
+                    <ListItemIcon><Icon style={{"width": "auto"}} className={option.icon} /></ListItemIcon>
                     <ListItemText primary={option.text} />
                 </ListItem>
             ))}
