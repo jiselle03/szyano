@@ -33,5 +33,22 @@ module Szyano
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+
+    # Never generate helper and asset files when controllers are created by default
+    config.generators do |g|
+      g.helper = false
+      g.assets = false
+    end 
+
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins 'localhost:5500'
+        resource '/api/*',
+          headers: :any,
+          credentials: true,
+          methods: [:get, :post, :put, :patch, :delete, :options]
+      end
+    end
+    
   end
 end
