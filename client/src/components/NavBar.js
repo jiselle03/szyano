@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import { AppBar, Divider, Drawer, Hidden, Icon, IconButton,
          List, ListItem, ListItemIcon, ListItemText, 
@@ -8,35 +9,51 @@ import { AppBar, Divider, Drawer, Hidden, Icon, IconButton,
 import useStyles from './Styles';
 
 const NavBar = props => {
-    // const { currentUser, onSignOut } = props;
+    const { currentUser, onSignOut } = props;
+
+    const options = [
+        {
+            'text': 'Catalog',
+            'icon': 'fas fa-book-open',
+            'target': '/catalog'
+        },
+        {
+            'text': 'About',
+            'icon': 'fas fa-building',
+            'target': '/about'
+        },
+        {
+            'text': 'News',
+            'icon': 'fas fa-newspaper',
+            'target': '/news'
+        },
+        {
+            'text': 'Support',
+            'icon': 'fas fa-question-circle',
+            'target': '/support'
+        },
+    ];
+
     const [open, setOpen] = useState(false);
+    const [menuOptions, setMenuOptions] = useState(options);
 
     const container = document.body;
     const classes = useStyles();
-    const handleDrawerToggle = () => setOpen(!open);
+    const toggleDrawer = () => setOpen(!open);
 
-    const menuOptions = [
-        {
-            "text": "Account", 
-            "icon": "fas fa-user-circle"
-        },
-        {
-            "text": "Catalog",
-            "icon": "fas fa-book-open"
-        },
-        {
-            "text": "About",
-            "icon": "fas fa-building"
-        },
-        {
-            "text": "News",
-            "icon": "fas fa-newspaper"
-        },
-        {
-            "text": "Support",
-            "icon": "fas fa-question-circle"
-        },
-    ];
+    useEffect(() => {
+        if (currentUser) { 
+            console.log(currentUser)
+            setMenuOptions([
+                { 'text': 'Account', 'icon': 'fas fa-user-circle', 'target': '/account' }, 
+                ...menuOptions]);
+        } else {
+            setMenuOptions([
+                {'text': 'Sign In', 'icon': 'fas fa-user-circle', 'target': '/sign-in'},
+                {'text': 'Sign Up', 'icon': 'fas fa-user-circle', 'target': '/sign-up'},
+                ...menuOptions]);
+        };
+    }, [currentUser]);
 
     const drawer = (
         <div>
@@ -46,10 +63,10 @@ const NavBar = props => {
           
           <List>
             {menuOptions.map(option => (
-              <ListItem button key={option.text}>
-                <ListItemIcon><Icon className={option.icon} /></ListItemIcon>
-                <ListItemText primary={option.text} />
-              </ListItem>
+                <ListItem button component="a" href={option.target} key={option.text}>
+                    <ListItemIcon><Icon className={option.icon} /></ListItemIcon>
+                    <ListItemText primary={option.text} />
+                </ListItem>
             ))}
           </List>
         </div>
@@ -63,7 +80,7 @@ const NavBar = props => {
                     color="inherit"
                     aria-label="open drawer"
                     edge="start"
-                    onClick={handleDrawerToggle}
+                    onClick={toggleDrawer}
                     className={classes.menuButton}
                     >
                     <Icon className="fas fa-bars" />
@@ -80,7 +97,7 @@ const NavBar = props => {
                         variant="temporary"
                         anchor={'left'}
                         open={open}
-                        onClose={handleDrawerToggle}
+                        onClose={toggleDrawer}
                         classes={{ paper: classes.drawerPaper }}
                         ModalProps={{ keepMounted: true }}
                     >
