@@ -22,7 +22,7 @@ const NavBar = props => {
         {
             'text': 'Catalog',
             'icon': 'fas fa-book-open',
-            'target': '/catalog'
+            'target': '/products'
         },
         {
             'text': 'About',
