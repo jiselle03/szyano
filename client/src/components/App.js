@@ -14,13 +14,13 @@ import AccountShowPage from './pages/AccountShowPage';
 import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 
-import useStyles from './Styles';
+import { appStyles } from './Styles';
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const classes = useStyles();
+  const classes = appStyles();
 
   const getUser = useCallback(() => {
     User.current().then(data => {

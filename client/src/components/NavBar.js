@@ -5,7 +5,7 @@ import { AppBar, Divider, Drawer, Hidden, Icon, IconButton,
          Toolbar, Typography 
        } from '@material-ui/core';
 
-import useStyles from './Styles';
+import { navStyles } from './Styles';
 
 const NavBar = props => {
     const { currentUser, onSignOut } = props;
@@ -14,7 +14,7 @@ const NavBar = props => {
     const [menuOptions, setMenuOptions] = useState([]);
 
     const container = document.body;
-    const classes = useStyles();
+    const classes = navStyles();
     const toggleDrawer = () => setOpen(!open);
 
     const options = [
@@ -44,6 +44,7 @@ const NavBar = props => {
         if (currentUser) { 
             setMenuOptions([
                 { 'text': 'Account', 'icon': 'fas fa-user-circle', 'target': '/account' }, 
+                { 'text': 'Sign Out', 'icon': 'fas fa-sign-out-alt', 'target': '/' },
                 ...options]);
         } else {
             setMenuOptions([
@@ -63,8 +64,14 @@ const NavBar = props => {
           
           <List>
             {menuOptions.map(option => (
-                <ListItem button component="a" href={option.target} key={option.text}>
-                    <ListItemIcon><Icon style={{"width": "auto"}} className={option.icon} /></ListItemIcon>
+                <ListItem 
+                    button 
+                    component='a' 
+                    href={option.target} 
+                    onClick={option.target === '/' ? onSignOut : null} 
+                    key={option.text}
+                >
+                    <ListItemIcon><Icon style={{'width': 'auto'}} className={option.icon} /></ListItemIcon>
                     <ListItemText primary={option.text} />
                 </ListItem>
             ))}
