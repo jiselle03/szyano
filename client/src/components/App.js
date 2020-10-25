@@ -53,6 +53,7 @@ const App = () => {
               exact path="/account"
               isAuthenticated={!!currentUser}
               component={AccountShowPage}
+              currentUser={currentUser}
             />
             <Route 
               path="/sign-in"
