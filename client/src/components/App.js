@@ -13,6 +13,9 @@ import WelcomePage from './pages/WelcomePage';
 import AccountShowPage from './pages/AccountShowPage';
 import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
+import ProductIndexPage from './pages/ProductIndexPage';
+import ProductShowPage from './pages/ProductShowPage';
+import NotFoundPage from './pages/NotFoundPage';
 
 import { globalStyles } from './Styles';
 
@@ -50,19 +53,22 @@ const App = () => {
           <Switch>
             <Route exact path='/' component={ WelcomePage }/>
             <AuthRoute 
-              exact path="/account"
+              exact path='/account'
               isAuthenticated={!!currentUser}
               component={AccountShowPage}
               currentUser={currentUser}
             />
             <Route 
-              path="/sign-in"
+              path='/sign-in'
               render={routeProps => <SignInPage {...routeProps} onSignIn={getUser} />}  
             />
             <Route 
-              path="/sign-up"
+              path='/sign-up'
               render={routeProps => <SignUpPage {...routeProps} onSignUp={getUser} />}  
             />
+            <Route exact path='/products' component={ProductIndexPage} />
+            <Route exact path='/products/:id' component={ProductShowPage} />
+            <Route component={NotFoundPage} />
           </Switch>
         </main>
       </BrowserRouter>
