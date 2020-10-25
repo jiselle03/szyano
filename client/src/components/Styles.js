@@ -1,11 +1,26 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const drawerWidth = 240;
+const primary = '#3f51b5';
+const secondary = '#f50057';
 
-export const appStyles = makeStyles(theme => ({
+export const globalStyles = makeStyles(theme => ({
+    content: {
+        flexGrow: 1,
+        padding: theme.spacing(3),
+    },
+    link: {
+        textDecoration: 'inherit',
+        color: primary,
+        fontWeight: 700,
+    },
     root: {
         display: 'flex',
     },
+    paragraph: {
+        margin: '1rem 0',
+    },
+    toolbar: theme.mixins.toolbar,
 }));
 
 export const navStyles = makeStyles(theme => ({
@@ -14,10 +29,6 @@ export const navStyles = makeStyles(theme => ({
         width: `calc(100% - ${drawerWidth}px)`,
         marginLeft: drawerWidth,
         },
-    },
-    content: {
-        flexGrow: 1,
-        padding: theme.spacing(3),
     },
     drawer: {
         [theme.breakpoints.up('md')]: {
@@ -34,7 +45,6 @@ export const navStyles = makeStyles(theme => ({
         display: 'none',
         },
     },
-    toolbar: theme.mixins.toolbar,
 }));
 
 export const formStyles = makeStyles(theme => ({
@@ -50,7 +60,7 @@ export const formStyles = makeStyles(theme => ({
         bottom: '25vh',
         left: '40%',
     },
-    form: {
+    container: {
         display: 'flex',
         flexDirection: 'column',
         // padding: '10% 0'

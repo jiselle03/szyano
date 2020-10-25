@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { Button, Card, Divider, FormControl, Icon, Input, InputAdornment, InputLabel, Typography } from '@material-ui/core';
 
 import Session from '../../api/session';
-import { formStyles } from '../Styles';
+import { formStyles, globalStyles } from '../Styles';
 
 const SignInPage = props => {
     const [errors, setErrors] = useState([]);
 
-    const classes = formStyles();
+    const form = formStyles();
+    const global = globalStyles();
 
     const createSession = event => {
         event.preventDefault();
@@ -30,9 +32,9 @@ const SignInPage = props => {
     };
 
     return(
-        <Card className={classes.card}>
-            <form onSubmit={createSession} className={classes.form}>
-                <FormControl className={classes.formField}>
+        <Card className={form.card}>
+            <form onSubmit={createSession} className={form.container}>
+                <FormControl className={form.formField}>
                     <InputLabel htmlFor="email">Email</InputLabel>
                     <Input
                     id="email"
@@ -47,7 +49,7 @@ const SignInPage = props => {
                     />
                 </FormControl>
 
-                <FormControl className={classes.formField}>
+                <FormControl className={form.formField}>
                     <InputLabel htmlFor="password">Password*</InputLabel>
                     <Input
                     id="password"
@@ -67,16 +69,16 @@ const SignInPage = props => {
                     variant="contained" 
                     color="secondary"
                     type="submit" 
-                    className={classes.button}
+                    className={form.button}
                 >
                     Sign In
                 </Button>
             </form>
 
             <Divider />
-
-            <Typography paragraph>
-                Don't have an account? SIGN UP.
+            
+            <Typography paragraph className={global.paragraph}>
+                Don't have an account? <Link to='/sign-up' className={global.link}>SIGN UP</Link>.
             </Typography>
         </Card>
     );

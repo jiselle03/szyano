@@ -14,13 +14,13 @@ import AccountShowPage from './pages/AccountShowPage';
 import SignInPage from './pages/SignInPage';
 import SignUpPage from './pages/SignUpPage';
 
-import { appStyles } from './Styles';
+import { globalStyles } from './Styles';
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const classes = appStyles();
+  const global = globalStyles();
 
   const getUser = useCallback(() => {
     User.current().then(data => {
@@ -36,7 +36,7 @@ const App = () => {
   if (isLoading) return <CircularProgress variant="determinate" />;
 
   return (
-    <div className={classes.root}>
+    <div className={global.root}>
       <CssBaseline />
 
       <BrowserRouter>
@@ -45,8 +45,8 @@ const App = () => {
           onSignOut={destroySession} 
         />
 
-        <main className={classes.content}>
-          <div className={classes.toolbar} />
+        <main className={global.content}>
+          <div className={global.toolbar} />
           <Switch>
             <Route exact path='/' component={ WelcomePage }/>
             <AuthRoute 
