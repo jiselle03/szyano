@@ -49,7 +49,7 @@ const SignInPage = props => {
 
     return(
         <Card className={form.card}>
-            <form onSubmit={createSession} className={form.container}>
+            <form onSubmit={createSession} className={global.flexColumn}>
                 {fields.map(field => (
                     <FormField 
                         

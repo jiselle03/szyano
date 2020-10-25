@@ -72,9 +72,9 @@ const SignUpPage = props => {
 
     return(
         <Card className={form.card}>
-            <form onSubmit={createUser} className={form.container}>
+            <form onSubmit={createUser} className={global.flexColumn}>
                 {fields.map((row, i) => (
-                    <div key={i} className={form.row}>
+                    <div key={i} className={`${global.flexRow} ${form.row}`}>
                         {row.map(field => (
                             <FormField 
                                 type={field.type}

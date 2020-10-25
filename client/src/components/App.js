@@ -39,7 +39,7 @@ const App = () => {
   if (isLoading) return <CircularProgress variant="determinate" />;
 
   return (
-    <div className={global.root}>
+    <div className={global.flexRow}>
       <CssBaseline />
 
       <BrowserRouter>

@@ -15,11 +15,11 @@ export const globalStyles = makeStyles(theme => ({
         color: primary,
         fontWeight: 700,
     },
-    paper: {
-        minHeight: '150px',
-        padding: '2rem',
+    flexColumn: {
+        display: 'flex',
+        flexDirection: 'column',
     },
-    root: {
+    flexRow: {
         display: 'flex',
     },
     paragraph: {
@@ -63,15 +63,10 @@ export const formStyles = makeStyles(() => ({
         width: '50vw',
         margin: 'auto',
     },
-    container: {
-        display: 'flex',
-        flexDirection: 'column',
-    },
     field: {
         margin: '1rem',
     },
     row: {
-        display: 'flex',
         justifyContent: 'space-between',
     }
 }));
