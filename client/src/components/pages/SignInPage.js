@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Button, Card, Divider, FormControl, Icon, Input, InputAdornment, InputLabel, Typography } from '@material-ui/core';
+import { Button, Card, Divider, Typography } from '@material-ui/core';
 
 import Session from '../../api/session';
+
+import FormField from '../FormField';
+
 import { formStyles, globalStyles } from '../Styles';
 
 const SignInPage = props => {
@@ -31,39 +34,31 @@ const SignInPage = props => {
         });
     };
 
+    const fields = [
+        {
+            "type": "email",
+            "text": "Email",
+            "icon": "fas fa-envelope"
+        },
+        {
+            "type": "password",
+            "text": "Password",
+            "icon": "fas fa-lock"
+        }
+    ];
+
     return(
         <Card className={form.card}>
             <form onSubmit={createSession} className={form.container}>
-                <FormControl className={form.formField}>
-                    <InputLabel htmlFor="email">Email</InputLabel>
-                    <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    startAdornment={
-                        <InputAdornment position="start">
-                            <Icon className="fas fa-envelope" />
-                        </InputAdornment>
-                    }
-                    placeholder="Email"
+                {fields.map(field => (
+                    <FormField 
+                        
+                        type={field.type}
+                        text={field.text} 
+                        icon={field.icon}
+                        key={field.type}
                     />
-                </FormControl>
-
-                <FormControl className={form.formField}>
-                    <InputLabel htmlFor="password">Password*</InputLabel>
-                    <Input
-                    id="password"
-                    type="password"
-                    name="password"
-                    startAdornment={
-                        <InputAdornment position="start">
-                            <Icon className="fas fa-lock" />
-                        </InputAdornment>
-                    }
-                    placeholder="Password"
-                    required
-                    />
-                </FormControl>
+                ))}
 
                 <Button 
                     variant="contained" 

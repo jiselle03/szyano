@@ -5,7 +5,7 @@ import { AppBar, Divider, Drawer, Hidden, Icon, IconButton,
          Toolbar, Typography 
        } from '@material-ui/core';
 
-import { navStyles } from './Styles';
+import { globalStyles, navStyles } from './Styles';
 
 const NavBar = props => {
     const { currentUser, onSignOut } = props;
@@ -14,7 +14,8 @@ const NavBar = props => {
     const [menuOptions, setMenuOptions] = useState([]);
 
     const container = document.body;
-    const classes = navStyles();
+    const global = globalStyles();
+    const nav = navStyles();
     const toggleDrawer = () => setOpen(!open);
 
     const options = [
@@ -58,7 +59,7 @@ const NavBar = props => {
 
     const drawer = (
         <div>
-          <div className={classes.toolbar} />
+          <div className={global.toolbar} />
 
           <Divider />
           
@@ -81,14 +82,14 @@ const NavBar = props => {
 
     return(
         <>
-            <AppBar position="fixed" className={classes.appBar}>
+            <AppBar position="fixed" className={nav.appBar}>
                 <Toolbar>
                     <IconButton
                     color="inherit"
                     aria-label="open drawer"
                     edge="start"
                     onClick={toggleDrawer}
-                    className={classes.menuButton}
+                    className={nav.menuButton}
                     >
                     <Icon className="fas fa-bars" />
                     </IconButton>
@@ -97,7 +98,7 @@ const NavBar = props => {
                     </Typography>
                 </Toolbar>
             </AppBar>
-            <nav className={classes.drawer}>
+            <nav className={nav.drawer}>
                 <Hidden mdUp implementation="css">
                     <Drawer
                         container={container}
@@ -105,7 +106,7 @@ const NavBar = props => {
                         anchor={'left'}
                         open={open}
                         onClose={toggleDrawer}
-                        classes={{ paper: classes.drawerPaper }}
+                        classes={{ paper: nav.drawerPaper }}
                         ModalProps={{ keepMounted: true }}
                     >
                         {drawer}
@@ -114,7 +115,7 @@ const NavBar = props => {
 
                 <Hidden xsDown implementation="css">
                     <Drawer
-                        classes={{ paper: classes.drawerPaper }}
+                        classes={{ paper: nav.drawerPaper }}
                         variant="permanent"
                         open
                     >

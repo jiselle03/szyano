@@ -1,8 +1,18 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
+import { Button, Card, Divider, Typography } from '@material-ui/core';
 
 import User from '../../api/user';
 
+import FormField from '../FormField';
+
+import { formStyles, globalStyles } from '../Styles';
+
 const SignUpPage = props => {
+    const form = formStyles();
+    const global = globalStyles();
+
     const createUser = event => {
         event.preventDefault();
         const { currentTarget: form } = event;
@@ -27,9 +37,71 @@ const SignUpPage = props => {
         });
     };
 
+    const fields = [
+        [{
+            "type": "first_name",
+            "text": "First Name",
+            "icon": "fas fa-user-circle"
+        },
+        {
+            "type": "last_name",
+            "text": "Last Name",
+            "icon": "fas fa-user-circle"
+        }],
+        [{
+            "type": "company",
+            "text": "Company",
+            "icon": "fas fa-building"
+        },
+        {
+            "type": "email",
+            "text": "Email",
+            "icon": "fas fa-envelope"
+        }],
+        [{
+            "type": "password",
+            "text": "Password",
+            "icon": "fas fa-lock"
+        },
+        {
+            "type": "password_confirmation",
+            "text": "Password Confirmation",
+            "icon": "fas fa-lock"
+        }]
+    ];
+
     return(
-        <form onSubmit={createUser}>
-        </form>
+        <Card className={form.card}>
+            <form onSubmit={createUser} className={form.container}>
+                {fields.map((row, i) => (
+                    <div key={i} className={form.row}>
+                        {row.map(field => (
+                            <FormField 
+                                type={field.type}
+                                text={field.text} 
+                                icon={field.icon}
+                                key={field.type}
+                            />
+                        ))}
+                    </div>
+                ))}
+
+                <Button 
+                    variant="contained" 
+                    color="secondary"
+                    type="submit" 
+                    className={form.button}
+                >
+                    Sign Up
+                </Button>
+            </form>
+
+            <Divider />
+            
+            <Typography paragraph className={global.paragraph}>
+                Already have an account? <Link to='/sign-in' className={global.link}>SIGN IN</Link>.
+            </Typography>
+        </Card>
     );
 };
 

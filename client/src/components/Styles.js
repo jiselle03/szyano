@@ -19,6 +19,7 @@ export const globalStyles = makeStyles(theme => ({
     },
     paragraph: {
         margin: '1rem 0',
+        textAlign: 'center'
     },
     toolbar: theme.mixins.toolbar,
 }));
@@ -47,25 +48,25 @@ export const navStyles = makeStyles(theme => ({
     },
 }));
 
-export const formStyles = makeStyles(theme => ({
+export const formStyles = makeStyles(() => ({
     button: {
-        margin: '1rem auto',
+        margin: '1rem auto 2rem auto',
         width: '50%',
     },
     card: {
-        // margin: '10% 25%',
-        padding: '3% 10%',
-        position: 'fixed',
-        top: '25vh',
-        bottom: '25vh',
-        left: '40%',
+        padding: '3vh 5vw',
+        width: '50vw',
+        margin: 'auto',
     },
     container: {
         display: 'flex',
         flexDirection: 'column',
-        // padding: '10% 0'
     },
-    formField: {
-        margin: '1rem 0'
+    field: {
+        margin: '1rem',
     },
+    row: {
+        display: 'flex',
+        justifyContent: 'space-between',
+    }
 }));
