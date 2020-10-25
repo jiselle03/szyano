@@ -8,11 +8,16 @@ export const globalStyles = makeStyles(theme => ({
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
+        minHeight: '100vh',
     },
     link: {
         textDecoration: 'inherit',
         color: primary,
         fontWeight: 700,
+    },
+    paper: {
+        minHeight: '150px',
+        padding: '2rem',
     },
     root: {
         display: 'flex',
@@ -26,13 +31,13 @@ export const globalStyles = makeStyles(theme => ({
 
 export const navStyles = makeStyles(theme => ({
     appBar: {
-        [theme.breakpoints.up('md')]: {
-        width: `calc(100% - ${drawerWidth}px)`,
-        marginLeft: drawerWidth,
+        [theme.breakpoints.up('sm')]: {
+            width: `calc(100% - ${drawerWidth}px)`,
+            marginLeft: drawerWidth,
         },
     },
     drawer: {
-        [theme.breakpoints.up('md')]: {
+        [theme.breakpoints.up('sm')]: {
         width: drawerWidth,
         flexShrink: 0,
         },
