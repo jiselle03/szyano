@@ -5,6 +5,19 @@ const primary = '#3f51b5';
 const secondary = '#f50057';
 
 export const globalStyles = makeStyles(theme => ({
+    card: {
+        margin: '1rem',
+        padding: '1rem',
+        [theme.breakpoints.down('sm')]: {
+            width: '80%',
+        },
+        [theme.breakpoints.up('md')]: {
+            width: '45%',
+        },
+        [theme.breakpoints.up('lg')]: {
+            width: '30%',
+        },
+    },
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
@@ -21,6 +34,10 @@ export const globalStyles = makeStyles(theme => ({
     },
     flexRow: {
         display: 'flex',
+    },
+    flexWrap: {
+        display: 'flex',
+        flexWrap: 'wrap',
     },
     paragraph: {
         margin: '1rem 0',
