@@ -74,7 +74,7 @@ const SignUpPage = props => {
         <Card className={form.card}>
             <form onSubmit={createUser} className={global.flexColumn}>
                 {fields.map((row, i) => (
-                    <div key={i} className={`${global.flexRow} ${form.row}`}>
+                    <div key={i} className={global.flexRow}>
                         {row.map(field => (
                             <FormField 
                                 type={field.type}
