@@ -11,7 +11,7 @@ const ProductShowPage = props => {
         Product.one(props.match.params.id).then(product => { 
             setProduct(product);
           });
-    }, []);
+    }, [props.match.params.id]);
 
     return(
         <>
