@@ -1,25 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Card, CardActions, CardContent,
-         Button, Icon, IconButton, Typography
-} from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, Typography } from '@material-ui/core';
 
 import Product from '../../api/product';
+
+import ProductFavorite from '../ProductFavorite';
 
 import { cardStyles, globalStyles } from '../Styles';
 
 const ProductIndexPage = props => {
+    const { currentUser } = props;
     const [products, setProducts] = useState([]);
+    const [favorites, setFavorites] = useState([]);
 
     const card = cardStyles();
     const global = globalStyles();
 
     useEffect(() => {
-        Product.all().then(products => { 
-            setProducts(products);
-          });
+        Product.all().then(products => setProducts(products));
     }, []);
+
+    useEffect(() => {
+        if (currentUser) {
+            currentUser.favorites.map(fave => setFavorites([...favorites, fave.product_id]));
+        };
+    }, [currentUser]);
 
     return(
         <div className={global.flexWrap}>
@@ -35,11 +41,9 @@ const ProductIndexPage = props => {
                         <Link to={`/products/${product.id}`} className={card.link}>
                             <Button>View Product</Button>
                         </Link>
-                        <IconButton aria-label='add to favorites' className={card.link}>
-                            <Icon className='fas fa-heart' />
-                        </IconButton>
+                        
+                        <ProductFavorite currentUser={currentUser} favorites={favorites} productID={product.id} />
                     </CardActions>
-                    
                 </Card>
                 
             ))}
