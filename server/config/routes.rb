@@ -6,6 +6,8 @@ Rails.application.routes.draw do
         get :current, on: :collection
       end
       resource :session, only: [:create, :destroy]
+
+      resources :products
     end
   end
 end
