@@ -77,7 +77,7 @@ const AccountShowPage = props => {
                 </AccordionSummary>
                 <AccordionDetails>
                     {!favorites && (
-                        <Typography paragraph>You do not have any favorites yet. <Link className={global.link} to='/catalog'>Browse our catalog</Link> to get started.</Typography>
+                        <Typography paragraph>You do not have any favorites yet. <Link className={global.link} to='/products'>Browse our catalog</Link> to get started.</Typography>
                     )}
                     {favorites && (
                         favorites.map(favorite => (
