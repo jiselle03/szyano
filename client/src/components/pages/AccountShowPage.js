@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Accordion, AccordionDetails, AccordionSummary, 
@@ -9,8 +9,7 @@ import { Accordion, AccordionDetails, AccordionSummary,
 import { globalStyles } from '../Styles';
 
 const AccountShowPage = props => {
-    const { first_name, last_name, company, email, phone } = props.currentUser;
-    const { favorites } = props;
+    const { first_name, last_name, company, email, phone, favorites } = props.currentUser;
 
     const global = globalStyles();
 
@@ -32,6 +31,8 @@ const AccountShowPage = props => {
             "info": phone
         }
     ];
+
+    console.log(favorites[0])
 
     return(
         <>
@@ -75,13 +76,16 @@ const AccountShowPage = props => {
                 >
                     <Typography variant="h6">Favorites</Typography>
                 </AccordionSummary>
-                <AccordionDetails>
+                <AccordionDetails className={global.flexColumn}>
                     {!favorites && (
                         <Typography paragraph>You do not have any favorites yet. <Link className={global.link} to='/products'>Browse our catalog</Link> to get started.</Typography>
                     )}
                     {favorites && (
                         favorites.map(favorite => (
-                            <Typography>{favorite.name}</Typography>
+                            <div key={favorite.product.id}>
+                                <Typography variant='h6'>{favorite.product.title}</Typography>
+                                <Typography paragraph>{favorite.product.description}</Typography>
+                            </div>
                         ))
                     )}
                 </AccordionDetails>
