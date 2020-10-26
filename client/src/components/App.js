@@ -26,8 +26,8 @@ const App = () => {
   const global = globalStyles();
 
   const getUser = useCallback(() => {
-    User.current().then(data => {
-      typeof data.id !== "number" ? setCurrentUser(null) : setCurrentUser(data);
+    User.current().then(user => {
+      typeof user.id !== "number" ? setCurrentUser(null) : setCurrentUser(user);
       setIsLoading(false);
     });
   }, []);
@@ -51,12 +51,11 @@ const App = () => {
         <main className={global.content}>
           <div className={global.toolbar} />
           <Switch>
-            <Route exact path='/' component={ WelcomePage }/>
+            <Route exact path='/' component={WelcomePage}/>
             <AuthRoute 
               exact path='/account'
               isAuthenticated={!!currentUser}
-              component={AccountShowPage}
-              currentUser={currentUser}
+              render={routeProps => <AccountShowPage {...routeProps} currentUser={currentUser} />}
             />
             <Route 
               path='/sign-in'
