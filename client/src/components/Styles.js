@@ -90,7 +90,14 @@ export const cardStyles = makeStyles(theme => ({
     },
     link: {
         textDecoration: 'inherit',
-        color: secondary,
         fontWeight: 700,
+    },
+    liked: {
+        textDecoration: 'inherit',
+        color: secondary,
+    },
+    unliked: {
+        textDecoration: 'inherit',
+        color: 'inherit',
     },
 }));
