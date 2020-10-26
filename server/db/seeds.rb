@@ -8,6 +8,9 @@
 
 PASSWORD = "supersecret"  
 
+User.destroy_all()
+Product.destroy_all()
+
 super_user = User.create( 
     first_name: "Hermione",
     last_name: "Granger",
@@ -19,3 +22,15 @@ super_user = User.create(
 )
 
 puts Cowsay.say("Generated #{User.count} users.", :tux)
+
+10.times do 
+    Product.create( 
+        title: Faker::Commerce.product_name,
+        category: Faker::Commerce.department(max: 2, fixed_amount: true),
+        description: Faker::Movies::HarryPotter.quote,
+        model_number: Faker::IDNumber.spanish_foreign_citizen_number
+    )  
+end 
+
+products = Product.all
+puts Cowsay.say("Generated #{Product.count} products", :frogs)
