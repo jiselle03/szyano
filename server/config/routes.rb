@@ -7,7 +7,10 @@ Rails.application.routes.draw do
       end
       resource :session, only: [:create, :destroy]
 
-      resources :products
+      resources :products do
+        resources :favorites, shallow: true, only: [:create, :destroy]
+        get :favorited, on: :collection
+      end
     end
   end
 end
