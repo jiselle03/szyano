@@ -65,7 +65,9 @@ const App = () => {
               path='/sign-up'
               render={routeProps => <SignUpPage {...routeProps} onSignUp={getUser} />}  
             />
-            <Route exact path='/products' component={ProductIndexPage} />
+            <Route 
+              exact path='/products' 
+              render={routeProps => <ProductIndexPage {...routeProps} currentUser={currentUser} />} />
             <Route exact path='/products/:id' component={ProductShowPage} />
             <Route component={NotFoundPage} />
           </Switch>
