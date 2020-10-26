@@ -5,19 +5,6 @@ const primary = '#3f51b5';
 const secondary = '#f50057';
 
 export const globalStyles = makeStyles(theme => ({
-    card: {
-        margin: '1rem',
-        padding: '1rem',
-        [theme.breakpoints.down('sm')]: {
-            width: '80%',
-        },
-        [theme.breakpoints.up('md')]: {
-            width: '45%',
-        },
-        [theme.breakpoints.up('lg')]: {
-            width: '30%',
-        },
-    },
     content: {
         flexGrow: 1,
         padding: theme.spacing(3),
@@ -31,9 +18,11 @@ export const globalStyles = makeStyles(theme => ({
     flexColumn: {
         display: 'flex',
         flexDirection: 'column',
+        justifyContent: 'space-between',
     },
     flexRow: {
         display: 'flex',
+        justifyContent: 'space-between',
     },
     flexWrap: {
         display: 'flex',
@@ -83,7 +72,25 @@ export const formStyles = makeStyles(() => ({
     field: {
         margin: '1rem',
     },
-    row: {
-        justifyContent: 'space-between',
-    }
+}));
+
+export const cardStyles = makeStyles(theme => ({
+    container: {
+        margin: '1rem',
+        padding: '1rem',
+        [theme.breakpoints.down('sm')]: {
+            width: '80%',
+        },
+        [theme.breakpoints.up('md')]: {
+            width: '45%',
+        },
+        [theme.breakpoints.up('lg')]: {
+            width: '30%',
+        },
+    },
+    link: {
+        textDecoration: 'inherit',
+        color: secondary,
+        fontWeight: 700,
+    },
 }));
