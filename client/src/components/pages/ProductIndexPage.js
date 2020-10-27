@@ -31,23 +31,22 @@ const ProductIndexPage = props => {
             user_id: currentUser.id
         };
 
-        if (favorite) {
+        if (favorites.includes(id)) {
             Favorite.destroy(favorite.id);
-            setFavorites([...favorites, parseInt(id)]);
-        } else {
-            Favorite.create(id, params);
             const filteredFaves = favorites.filter(productId => productId !== parseInt(id));
             setFavorites(filteredFaves);
+        } else {
+            Favorite.create(id, params);
+            setFavorites([...favorites, parseInt(id)]);
         };
     };
 
     useEffect(() => {
-        Product.all().then(products => setProducts(products));
-    }, []);
-
-    useEffect(() => {
+        Product.all().then(products => {
+            setProducts(products);
+        });
         if (currentUser) setFavorites(ids);
-    }, [currentUser]);
+    }, []);
 
     return(
         <div className={global.flexWrap}>

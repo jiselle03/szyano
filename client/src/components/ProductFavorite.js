@@ -12,13 +12,13 @@ const ProductFavorite = props => {
     const card = cardStyles();
 
     const handleFavorite = event => {
-        favoriteProduct(event);
         setIsFaved(!isFaved);
+        favoriteProduct(event);
     };
 
     useEffect(() => {
-        const isFaved = favorites.includes(productID);
-        setIsFaved(isFaved);
+        setIsFaved(favorites.includes(productID));
+        // console.log(favorites);
     }, [isFaved]);
 
     return(
