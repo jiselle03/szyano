@@ -4,6 +4,6 @@ class UserSerializer < ActiveModel::Serializer
   has_many :favorites
 
   class FavoriteSerializer < ActiveModel::Serializer
-    attributes :product
+    attributes :id, :product
   end
 end
