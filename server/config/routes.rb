@@ -11,6 +11,8 @@ Rails.application.routes.draw do
         resources :favorites, shallow: true, only: [:create, :destroy]
         get :favorited, on: :collection
       end
+
+      resources :posts
     end
   end
 end
