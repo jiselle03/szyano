@@ -10,6 +10,7 @@ PASSWORD = "supersecret"
 
 User.destroy_all()
 Product.destroy_all()
+Post.destroy_all()
 
 super_user = User.create( 
     first_name: "Hermione",
@@ -28,9 +29,23 @@ puts Cowsay.say("Generated #{User.count} users.", :tux)
         title: Faker::Commerce.product_name,
         category: Faker::Commerce.department(max: 2, fixed_amount: true),
         description: Faker::Movies::HarryPotter.quote,
-        model_number: Faker::IDNumber.spanish_foreign_citizen_number
+        model_number: Faker::IDNumber.spanish_foreign_citizen_number,
+        created_at: Faker::Date.backward(days:365 * 5)
     )  
 end 
 
 products = Product.all
 puts Cowsay.say("Generated #{Product.count} products", :frogs)
+
+categories = ["company", "general"]
+
+10.times do
+    Post.create(
+        title: Faker::Lorem.sentence(word_count: 3, supplemental: true, random_words_to_add: 4),
+        category: categories[rand(0..1)],
+        body: Faker::Lorem.paragraphs(number: 3),
+        created_at: Faker::Date.backward(days: 365 * 5)
+    )
+end
+
+puts Cowsay.say("Generated #{Post.count} posts", :dragon)

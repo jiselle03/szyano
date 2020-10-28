@@ -3,6 +3,5 @@ FactoryBot.define do
     title { "MyString" }
     category { "MyString" }
     body { "MyText" }
-    user { nil }
   end
 end
