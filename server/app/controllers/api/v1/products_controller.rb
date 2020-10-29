@@ -1,14 +1,16 @@
 class Api::V1::ProductsController < ApplicationController
     before_action :authenticate_user!
     before_action :find_product, only: [:update, :show, :destroy]
-    before_action :authorize!, except: [:index, :create]
+    before_action :authorize!, except: [:index, :show]
 
     def create
         Cloudinary::Uploader.upload(params[:image1], params[:image2], params[:image3])
         product = Product.new product_params
         
         if product.save
-            render json: { id: product.id }
+            render json: { 
+                id: product.id 
+            }
         else
             render(
                 json: { errors: product.errors },
@@ -19,7 +21,9 @@ class Api::V1::ProductsController < ApplicationController
 
     def update
         if @product.update product_params
-            render json: { id: @product.id }
+            render json: { 
+                id: @product.id 
+            }
         else
             render(
                 json: { 
