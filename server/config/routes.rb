@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       end
 
       resources :posts
+      resources :profiles, only: [:show, :update]
     end
   end
 end
