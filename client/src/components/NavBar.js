@@ -35,9 +35,9 @@ const NavBar = props => {
             'target': '/news'
         },
         {
-            'text': 'Support',
+            'text': 'Contact Us',
             'icon': 'fas fa-question-circle',
-            'target': '/support'
+            'target': '/contact'
         },
     ];
 
