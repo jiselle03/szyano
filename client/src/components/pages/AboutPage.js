@@ -4,7 +4,7 @@ import { Typography } from '@material-ui/core';
 
 import Profile from '../../api/profile';
 
-const AboutPage = props => {
+const AboutPage = () => {
     const [profile, setProfile] = useState([]);
 
     useEffect(() => {
