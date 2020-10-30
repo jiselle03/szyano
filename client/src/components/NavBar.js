@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 import { AppBar, Divider, Drawer, Hidden, Icon, IconButton,
          List, ListItem, ListItemIcon, ListItemText, 
          Toolbar, Typography 
        } from '@material-ui/core';
+
+import Profile from '../api/profile';
 
 import { globalStyles, navStyles } from './Styles';
 
@@ -12,6 +15,7 @@ const NavBar = props => {
 
     const [open, setOpen] = useState(false);
     const [menuOptions, setMenuOptions] = useState([]);
+    const [hotline, setHotline] = useState("");
 
     const container = document.body;
     const global = globalStyles();
@@ -55,7 +59,12 @@ const NavBar = props => {
         };
     };
 
-    useEffect(() => checkUser(currentUser), [currentUser]);
+    useEffect(() => {
+        checkUser(currentUser);
+        Profile.get().then(profile => {
+            setHotline(profile.hotline);
+        });
+    }, [currentUser]);
 
     const drawer = (
         <div>
@@ -93,9 +102,17 @@ const NavBar = props => {
                     >
                     <Icon className="fas fa-bars" />
                     </IconButton>
-                    <Typography variant="h6" noWrap>
-                        SZ Yano
-                    </Typography>
+                    <header className={global.flexRow}>
+                        <Typography variant="h4" noWrap>
+                            <Link to="/" className={nav.header}>
+                                    SZ Yano
+                            </Link>
+                        </Typography>
+                        
+                        <Typography paragraph style={{margin: 'auto 0'}}>
+                            Hotline: {hotline}
+                        </Typography>
+                    </header>
                 </Toolbar>
             </AppBar>
             <nav className={nav.drawer}>

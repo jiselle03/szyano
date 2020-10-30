@@ -23,6 +23,7 @@ export const globalStyles = makeStyles(theme => ({
     flexRow: {
         display: 'flex',
         justifyContent: 'space-between',
+        width: '100%',
     },
     flexWrap: {
         display: 'flex',
@@ -50,6 +51,10 @@ export const navStyles = makeStyles(theme => ({
     },
     drawerPaper: {
         width: drawerWidth,
+    },
+    header: {
+        textDecoration: 'inherit',
+        color: 'inherit',
     },
     menuButton: {
         marginRight: theme.spacing(2),
