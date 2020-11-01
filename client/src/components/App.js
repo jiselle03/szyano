@@ -79,7 +79,8 @@ const App = () => {
               exact path='/products' 
               render={routeProps => <ProductIndexPage {...routeProps} currentUser={currentUser} />} />
             <Route exact path='/products/new' component={ProductNewPage} />
-            <Route exact path='/products/:id' component={ProductShowPage} />
+            <Route exact path='/products/:id' 
+              render={routeProps => <ProductShowPage {...routeProps} currentUser={currentUser} />} />
             <Route exact path='/products/:id/edit' component={ProductEditPage} />
             <Route 
               exact path='/news' 
