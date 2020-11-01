@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { Button, Card, CardActions, CardContent, Typography } from '@material-ui/core';
 
 import Product from '../../api/product';
-import Favorite from '../../api/favorite';
 
 import ProductFavorite from '../ProductFavorite';
 
@@ -21,30 +20,10 @@ const ProductIndexPage = props => {
     const card = cardStyles();
     const global = globalStyles();
 
-    const favoriteProduct = event => {
-        event.preventDefault();
-        const id = parseInt(event.target.parentNode.parentNode.dataset.id);
-        const favorite = currentUser.favorites.filter(fave => fave.product.id === id)[0];
-
-        const params = {
-            product_id: id,
-            user_id: currentUser.id
-        };
-
-        if (favorites.includes(id)) {
-            Favorite.destroy(favorite.id);
-            const filteredFaves = favorites.filter(productId => productId !== parseInt(id));
-            setFavorites(filteredFaves);
-        } else {
-            Favorite.create(id, params);
-            setFavorites([...favorites, parseInt(id)]);
-        };
-    };
+    const resetFavorites = favorites => setFavorites(favorites);
 
     useEffect(() => {
-        Product.all().then(products => {
-            setProducts(products);
-        });
+        Product.all().then(products => setProducts(products));
         if (currentUser) setFavorites(ids);
     }, []);
 
@@ -63,7 +42,12 @@ const ProductIndexPage = props => {
                             <Button>View Product</Button>
                         </Link>
                         
-                        <ProductFavorite favoriteProduct={favoriteProduct} favorites={favorites} productID={product.id} />
+                        <ProductFavorite 
+                            currentUser={currentUser} 
+                            resetFavorites={resetFavorites} 
+                            favorites={favorites} 
+                            productID={product.id} 
+                        />
                     </CardActions>
                 </Card>
                 
