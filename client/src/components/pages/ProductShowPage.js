@@ -6,6 +6,8 @@ import Product from '../../api/product';
 
 import ProductFavorite from '../ProductFavorite';
 
+import { globalStyles } from '../Styles';
+
 const ProductShowPage = props => {
     const { currentUser } = props;
 
@@ -16,6 +18,8 @@ const ProductShowPage = props => {
 
     const resetFavorites = favorites => setFavorites(favorites);
 
+    const global = globalStyles();
+
     useEffect(() => {
         Product.one(props.match.params.id).then(product => setProduct(product));
         if (currentUser) setFavorites(ids);
@@ -23,16 +27,19 @@ const ProductShowPage = props => {
 
     return(
         <>
-            <Typography variant='h4'>{product.title}</Typography>
+            <div className={global.flexRow}>
+                <Typography variant='h4'>{product.title}</Typography>
+                <ProductFavorite 
+                    resetFavorites={resetFavorites} 
+                    favorites={favorites} 
+                    productID={product.id}
+                />
+            </div>
 
             <Typography paragraph>{product.description}</Typography>
             <Typography paragraph>{product.model_number}</Typography>
 
-            <ProductFavorite 
-                resetFavorites={resetFavorites} 
-                favorites={favorites} 
-                productID={product.id}
-            />
+            
         </>
     );
 };
