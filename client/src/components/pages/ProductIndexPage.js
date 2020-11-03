@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Button, Card, CardActions, CardContent, Typography } from '@material-ui/core';
+import { Button, Card, CardActions, CardContent, Fab, Icon, Typography } from '@material-ui/core';
 
 import Product from '../../api/product';
 
@@ -50,8 +50,10 @@ const ProductIndexPage = props => {
                         />
                     </CardActions>
                 </Card>
-                
             ))}
+            <Fab color="secondary" aria-label="add" className={global.fab}>
+                <Icon className="fas fa-plus" />
+            </Fab>
         </div>
     );
 };

@@ -15,6 +15,11 @@ export const globalStyles = makeStyles(theme => ({
         color: primary,
         fontWeight: 700,
     },
+    fab: {
+        position: 'fixed',
+        right: '1.5rem',
+        bottom: '1.5rem',
+    },
     flexColumn: {
         display: 'flex',
         flexDirection: 'column',
