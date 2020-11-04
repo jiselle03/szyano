@@ -51,9 +51,11 @@ const ProductIndexPage = props => {
                     </CardActions>
                 </Card>
             ))}
-            <Fab color="secondary" aria-label="add" className={global.fab}>
-                <Icon className="fas fa-plus" />
-            </Fab>
+            <Link to="/products/new">
+                <Fab color="secondary" aria-label="add" className={global.fab}>
+                    <Icon className="fas fa-plus" />
+                </Fab>
+            </Link>
         </div>
     );
 };
