@@ -1,10 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { Button, Typography } from '@material-ui/core';
+import { Button, FormControl, Input, InputLabel, Typography } from '@material-ui/core';
 
 import Product from '../../api/product';
-
-import FormField from '../FormField';
 
 import { formStyles, globalStyles } from '../Styles';
 
@@ -39,19 +37,57 @@ const ProductNewPage = props => {
         form.reset();
     };
 
+    const fields = [
+        {
+            "type": "title",
+            "text": "Title"
+        },
+        {
+            "type": "category",
+            "text": "Category"
+        },
+        {
+            "type": "description",
+            "text": "Description"
+        },
+        {
+            "type": "model_number",
+            "text": "Model Number"
+        }
+    ];
+
     return(
         <>
             <form onSubmit={createProduct} className={global.flexColumn}>
-                <Button
-                    variant="contained"
-                    component="label"
-                >
-                Upload File
-                <input
-                    type="file"
-                    style={{ display: "none" }}
-                />
-                </Button>
+                {fields.map(field => (
+                    <FormControl className={form.field}>
+                        <InputLabel htmlFor={field.type}>{field.text}</InputLabel>
+                        <Input
+                            id={field.type}
+                            name={field.type}
+                            type={field.type}
+                            placeholder={field.text}
+                        />
+                    </FormControl>
+                ))}
+
+                {["1", "2", "3"].map(number => (
+                    <>
+                    <Typography paragraph>
+                        {`Image ${number}`}
+                    </Typography>
+                    <Button
+                        variant="contained"
+                        component="label"
+                    >
+                        <InputLabel htmlFor={`image${number}`}>Upload File</InputLabel>
+                        <input
+                            type={`image${number}`}
+                            style={{ display: "none" }}
+                        />
+                    </Button>
+                    </>
+                ))}
             </form>
         </>
     );
