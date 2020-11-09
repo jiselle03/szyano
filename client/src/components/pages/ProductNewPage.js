@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Button, FormControl, Input, InputLabel, Typography } from '@material-ui/core';
+import { Button, FormControl, Input, InputLabel, Typography, TextField } from '@material-ui/core';
 
 import Product from '../../api/product';
 
@@ -39,19 +39,19 @@ const ProductNewPage = props => {
 
     const fields = [
         {
-            "type": "title",
+            "name": "title",
             "text": "Title"
         },
         {
-            "type": "category",
+            "name": "category",
             "text": "Category"
         },
         {
-            "type": "description",
+            "name": "description",
             "text": "Description"
         },
         {
-            "type": "model_number",
+            "name": "model_number",
             "text": "Model Number"
         }
     ];
@@ -61,12 +61,13 @@ const ProductNewPage = props => {
             <form onSubmit={createProduct} className={global.flexColumn}>
                 {fields.map(field => (
                     <FormControl className={form.field}>
-                        <InputLabel htmlFor={field.type}>{field.text}</InputLabel>
-                        <Input
-                            id={field.type}
-                            name={field.type}
-                            type={field.type}
+                        <TextField
+                            id={field.name}
+                            name={field.name}
                             placeholder={field.text}
+                            multiline
+                            rows={field.name === "description" ? 10 : 1}
+                            variant="outlined"
                         />
                     </FormControl>
                 ))}
@@ -81,13 +82,22 @@ const ProductNewPage = props => {
                         component="label"
                     >
                         <InputLabel htmlFor={`image${number}`}>Upload File</InputLabel>
-                        <input
-                            type={`image${number}`}
+                        <Input
+                            type="file"
                             style={{ display: "none" }}
                         />
                     </Button>
                     </>
                 ))}
+
+                <Button 
+                    variant="contained" 
+                    color="secondary"
+                    type="submit" 
+                    className={form.button}
+                >
+                    Submit
+                </Button>
             </form>
         </>
     );
