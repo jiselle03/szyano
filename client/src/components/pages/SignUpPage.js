@@ -39,32 +39,38 @@ const SignUpPage = props => {
 
     const fields = [
         [{
-            "type": "first_name",
+            "type": "text",
+            "name": "first_name",
             "text": "First Name",
             "icon": "fas fa-user-circle"
         },
         {
-            "type": "last_name",
+            "type": "text",
+            "name": "last_name",
             "text": "Last Name",
             "icon": "fas fa-user-circle"
         }],
         [{
-            "type": "company",
+            "type": "text",
+            "name": "company",
             "text": "Company",
             "icon": "fas fa-building"
         },
         {
             "type": "email",
+            "name": "email",
             "text": "Email",
             "icon": "fas fa-envelope"
         }],
         [{
             "type": "password",
+            "name": "password",
             "text": "Password",
             "icon": "fas fa-lock"
         },
         {
-            "type": "password_confirmation",
+            "type": "password",
+            "name": "password_confirmation",
             "text": "Password Confirmation",
             "icon": "fas fa-lock"
         }]
@@ -77,10 +83,11 @@ const SignUpPage = props => {
                     <div key={i} className={global.flexRow}>
                         {row.map(field => (
                             <FormField 
+                                key={field.name}
                                 type={field.type}
+                                name={field.name}
                                 text={field.text} 
                                 icon={field.icon}
-                                key={field.type}
                             />
                         ))}
                     </div>

@@ -37,11 +37,13 @@ const SignInPage = props => {
     const fields = [
         {
             "type": "email",
+            "name": "email",
             "text": "Email",
             "icon": "fas fa-envelope"
         },
         {
             "type": "password",
+            "name": "password",
             "text": "Password",
             "icon": "fas fa-lock"
         }
@@ -51,12 +53,12 @@ const SignInPage = props => {
         <Card className={form.card}>
             <form onSubmit={createSession} className={global.flexColumn}>
                 {fields.map(field => (
-                    <FormField 
-                        
+                    <FormField  
+                        key={field.name}
                         type={field.type}
+                        name={field.name}
                         text={field.text} 
                         icon={field.icon}
-                        key={field.type}
                     />
                 ))}
 

@@ -1,11 +1,11 @@
 import React from 'react';
 
-import { FormControl, Icon, Input, InputAdornment, InputLabel } from '@material-ui/core';
+import { FormControl, Icon, Input, InputAdornment, InputLabel, TextField } from '@material-ui/core';
 
 import { formStyles } from './Styles';
 
 const FormField = props => {
-    const { type, text, icon } = props;
+    const { type, name, text, icon } = props;
 
     const form = formStyles();
 
@@ -13,8 +13,8 @@ const FormField = props => {
         <FormControl className={form.field}>
             <InputLabel htmlFor={type}>{text}</InputLabel>
             <Input
-            id={type}
-            name={type}
+            id={name}
+            name={name}
             type={type}
             startAdornment={
                 <InputAdornment position="start">
