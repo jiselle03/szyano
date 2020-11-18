@@ -25,7 +25,7 @@ const AboutPage = () => {
                 <Typography paragraph key={i}>{paragraph}</Typography>
             ))}
 
-            <Fab color="secondary" aria-label="add" className={global.fab}>
+            <Fab color="secondary" aria-label="edit" className={global.fab}>
                 <Icon className="fas fa-pen" />
             </Fab>
         </>
