@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import { Typography } from '@material-ui/core';
+import { Fab, Icon, Typography } from '@material-ui/core';
 
 import Product from '../../api/product';
 
@@ -39,7 +39,9 @@ const ProductShowPage = props => {
             <Typography paragraph>{product.description}</Typography>
             <Typography paragraph>{product.model_number}</Typography>
 
-            
+            <Fab color="secondary" aria-label="edit" className={global.fab}>
+                <Icon className="fas fa-pen" />
+            </Fab>
         </>
     );
 };
